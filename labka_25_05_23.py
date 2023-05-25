@@ -29,7 +29,7 @@ if response.status_code == 200:
 '''
 
 #3
-
+'''
 import requests
 from bs4 import BeautifulSoup
 
@@ -40,3 +40,17 @@ if response.status_code == 200:
     for link in soup_list:
         href = link.get('href')
         print(href)
+'''
+#4
+
+import requests
+from bs4 import BeautifulSoup
+
+response = requests.get("https://www.example.com/")
+if response.status_code == 200:
+    soup = BeautifulSoup(response.content , "html.parser")
+    for script in soup.find_all(["style" , "script"]):
+        script.extract() #вирізає непотріб
+    text = ' '.join(soup.stripped_strings) #обрізає зайве html
+    words = len(text.split())
+    print(words)
