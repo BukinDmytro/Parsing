@@ -13,7 +13,7 @@ else:
     print("No connection",response.status_code)
 '''
 #2
-
+'''
 import requests
 from bs4 import BeautifulSoup
 
@@ -26,3 +26,17 @@ if response.status_code == 200:
 
     with open("file.txt" , "w") as file:
         file.write(str(i))
+'''
+
+#3
+
+import requests
+from bs4 import BeautifulSoup
+
+response = requests.get("https://www.binance.com/")
+if response.status_code == 200:
+    soup = BeautifulSoup(response.content , "html.parser")
+    soup_list = soup.find_all('a')
+    for link in soup_list:
+        href = link.get('href')
+        print(href)
