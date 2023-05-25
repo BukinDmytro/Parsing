@@ -1,4 +1,5 @@
 #1
+
 import requests
 from bs4 import BeautifulSoup
 
@@ -8,3 +9,7 @@ if response.status_code == 200:
     soup = BeautifulSoup(response.content , "html.parser")
     title = soup.find("title").text
     print(title)
+else:
+    print("No connection")
+#2
+
