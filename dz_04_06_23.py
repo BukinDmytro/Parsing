@@ -49,7 +49,7 @@ response = requests.get("https://www.example.com/")
 
 if response.status_code == 200:
     soup = BeautifulSoup(response.content , "html.parser")
-    h2 = soup.find_all("h1").text
-    print(h2)
+    h1 = soup.find_all("h1").text
+    print(h1)
 else:
     print("No connection or no h1")
