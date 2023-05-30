@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 import random
 import telebot
 from telebot import types
-
+bot = telebot.TeleBot("6272305334:AAGd6szstDkWa3795wh8fdaCwI6a5yNSCSE")
 response = requests.get("https://minfin.com.ua/ua/currency/nbu/")
 
 if response.status_code == 200:
@@ -15,3 +15,16 @@ if response.status_code == 200:
     print(elem2.text)
     elem3 = usdeurpln[4]
     print(elem3.text)
+
+@bot.message_handler(commands = ['start'])
+def start(m , res = False):
+    #adding three buttons
+
+    markup = types.ReplyKeyboardMarkup(resize_keyboard = True)
+    item1 = types.KeyboardButton("Долари")
+    item2 = types.KeyboardButton("Євро")
+    item3 = types.KeyboardButton("Злоті")
+    markup.add(item1)
+    markup.add(item2)
+    markup.add(item3)
+    bot.send_message(m.chat.id , "Натисни одну із кнопок" , reply_markup = markup)
